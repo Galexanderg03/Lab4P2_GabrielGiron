@@ -6,12 +6,14 @@
 package lab4p2_gabrielgiron_12051024;
 
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 /**
  *
  * @author Galex
  */
 public class Lab4P2_GabrielGiron_12051024 {
+static Random R = new Random();
 static Scanner sc = new Scanner(System.in);
 static ArrayList<Familia> Familias = new ArrayList();
     /**
@@ -34,6 +36,11 @@ static ArrayList<Familia> Familias = new ArrayList();
             opcion = sc.nextInt();
             switch(opcion)
             {
+                case 0:
+                {
+                    System.out.println("Salido Del Sistema Exitosamente");
+                    break;
+                }
                 case 1:
                 {
                     CrearFamilia();
@@ -51,8 +58,10 @@ static ArrayList<Familia> Familias = new ArrayList();
                 }
                 case 4:
                 {
+                    Pelea();
                     break;
                 }
+                default: System.out.println("Opcion No Valida5");
             }
         }
     }
@@ -99,11 +108,75 @@ static ArrayList<Familia> Familias = new ArrayList();
                 int Edad = sc.nextInt();
                 System.out.println("Ingrese la Vida");
                 int Vida = sc.nextInt();
-                
+                Persona N = new Normales(Nombre,Familias.get(pos).getApellido(),Edad,Vida);
+                Familias.get(pos).getPersonas().add(N);
+                System.out.println("Aldeando Agregado Exitosamente");
+                break;
+            }
+            case 2:
+            {
+                System.out.println("Ingrese el Nombre");
+                String Nombre = sc.next();
+                System.out.println("Ingrese la Edad");
+                int Edad = sc.nextInt();
+                System.out.println("Ingrese la Vida");
+                int Vida = sc.nextInt();
+                Persona N = new Pacifista(Nombre,Familias.get(pos).getApellido(),Edad,Vida);
+                Familias.get(pos).getPersonas().add(N);
+                System.out.println("Aldeando Agregado Exitosamente");
+                break;
+            }
+            case 3:
+            {
+                System.out.println("Ingrese el Nombre");
+                String Nombre = sc.next();
+                System.out.println("Ingrese la Edad");
+                int Edad = sc.nextInt();
+                System.out.println("Ingrese la Vida");
+                int Vida = sc.nextInt();
+                System.out.println("Ingrese el Ataque(200-500)");
+                int Atk = sc.nextInt();
+                if(Atk < 200 || Atk > 500)
+                {
+                    System.out.println("El Ataque que Ingreso no es aceptado");
+                }
+                else
+                {
+                    Persona N = new Herrero(Atk,Nombre,Familias.get(pos).getApellido(),Edad,Vida);
+                    Familias.get(pos).getPersonas().add(N);
+                    System.out.println("Aldeando Agregado Exitosamente");
+                }
+                break;
+            }
+            case 4:
+            {
+                System.out.println("Ingrese el Nombre");
+                String Nombre = sc.next();
+                System.out.println("Ingrese la Edad");
+                int Edad = sc.nextInt();
+                System.out.println("Ingrese la Vida");
+                int Vida = sc.nextInt();
+                Persona N = new Agronomo(Nombre,Familias.get(pos).getApellido(),Edad,Vida);
+                Familias.get(pos).getPersonas().add(N);
+                System.out.println("Aldeando Agregado Exitosamente");
+                break;
+            }
+            case 5:
+            {
+                System.out.println("Ingrese el Nombre");
+                String Nombre = sc.next();
+                System.out.println("Ingrese la Edad");
+                int Edad = sc.nextInt();
+                System.out.println("Ingrese la Vida");
+                int Vida = sc.nextInt();
+                Persona N = new Agronomo(Nombre,Familias.get(pos).getApellido(),Edad,Vida);
+                Familias.get(pos).getPersonas().add(N);
+                System.out.println("Aldeando Agregado Exitosamente");
                 break;
             }
         }
     }
+    
     public static void Imprimir()
     {
         System.out.println("-------------------------");
@@ -113,6 +186,46 @@ static ArrayList<Familia> Familias = new ArrayList();
         }
         System.out.println(Salida);
         System.out.println("-------------------------");
+    }
+    
+    public static void Pelea()
+    {
+        print();
+        System.out.println("Ingrese el Apellido de la Familia contra la que pelearan los Montesco");
+        String Apellido = sc.next();
+        if(Apellido.equals("Capuleto") && Familias.size() != 2)
+        {
+            System.out.println("Debes Eliminar a las otras Familias para poder pelear contra los Capuleto");
+        }
+        else
+        {
+            int pos = 0;
+            int cent = 0;
+            for (int i = 0; i < Familias.size(); i++) {
+                if(Apellido.equals(Familias.get(i).getApellido()))
+                {
+                    pos = i;
+                    cent = 1;
+                    break;
+                }
+            }
+            if(cent == 0)
+            {
+                System.out.println("El Apellido que Ingreso no es valido");
+            }
+            else if(Familias.get(pos).getPersonas().size() == 0)
+            {
+                System.out.println("Esta Familia no puede participar porque no tiene miembros");
+            }
+            else
+            {
+                while(Familias.get(0).getPersonas().size() > 0 && Familias.get(pos).getPersonas().size() > 0)
+                {
+                    int r1 = R.nextInt(Familias.get(pos).getPersonas().size());
+                    int r2 = R.nextInt(Familias.get(0).getPersonas().size());
+                }
+            }
+        }
     }
     
     public static void Instancias()
@@ -132,9 +245,9 @@ static ArrayList<Familia> Familias = new ArrayList();
         Persona B = new Herrero(300,"Bryan","Alvarez",20,400);
         
         //crear Add al ArrayList;
-        Familias.add(A);
-        Familias.add(C);
         Familias.add(M);
+        Familias.add(C);
+        Familias.add(A);
         M.getPersonas().add(R);
         M.getPersonas().add(H);
         M.getPersonas().add(a);
@@ -145,11 +258,11 @@ static ArrayList<Familia> Familias = new ArrayList();
     }
     public static void print()
     {
-        System.out.println();
+        System.out.println("Lista Familias");
         String Salida = "";
         for (int i = 0; i < Familias.size(); i++) {
             Salida = Salida + "[" + i + "]" + Familias.get(i).getApellido() + "\n";
         }
-        System.out.println(Salida);
+        System.out.print(Salida);
     }
 }

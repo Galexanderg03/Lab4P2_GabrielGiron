@@ -26,7 +26,7 @@ public class Agronomo extends Persona{
 
     @Override
     public String toString() {
-        return "Agronomo{" + "Atk=" + Atk + '}';
+        return super.toString() + " Agronomo{" + "Atk=" + Atk + '}';
     }
     
 }

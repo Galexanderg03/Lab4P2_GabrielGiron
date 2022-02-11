@@ -26,7 +26,7 @@ public class SuperGranjero extends Persona{
 
     @Override
     public String toString() {
-        return "SuperGranjero{" + "Atk=" + Atk + '}';
+        return super.toString() + "SuperGranjero{" + "Atk=" + Atk + '}';
     }
     
 }
