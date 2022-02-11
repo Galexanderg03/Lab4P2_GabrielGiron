@@ -263,6 +263,14 @@ static ArrayList<Familia> Familias = new ArrayList();
                         }
                     }
                 }
+                if(Familias.get(pos).getPersonas().size() == 0)
+                    Familias.remove(pos);
+                
+                if(Apellido.equals("Capuleto"))
+                {
+                    System.out.println("GANASTE");
+                    System.exit(0);
+                }
             }
         }
     }
